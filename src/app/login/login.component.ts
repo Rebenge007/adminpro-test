@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   constructor( public router: Router ) { }
 
   ngOnInit(): void {
-
+    init_plugins();
   }
 
   ingresar() {
