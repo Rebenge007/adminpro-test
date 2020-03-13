@@ -19,7 +19,7 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { ProfileComponent } from './profile/profile.component';
-
+import { CommonModule } from '@angular/common';
 // Pipe Module
 import { PipesModule } from '../pipes/pipes.module';
 
@@ -43,6 +43,7 @@ import { PipesModule } from '../pipes/pipes.module';
         Graficas1Component
     ],
     imports: [
+        CommonModule,
         SharedModule,
         PAGES_ROUTES,
         FormsModule,

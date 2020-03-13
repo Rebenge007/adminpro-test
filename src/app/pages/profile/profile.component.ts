@@ -10,6 +10,9 @@ import { UsuarioService } from '../../services/service.index';
 export class ProfileComponent implements OnInit {
   usuario: Usuario;
 
+  imagenSubir: File;
+  imagenTemp: string;
+
   constructor(
     public _usuarioService: UsuarioService
   ) {
@@ -19,7 +22,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  guardar( usuario: Usuario ){
+  guardar( usuario: Usuario ) {
     console.log( usuario );
     this.usuario.nombre = usuario.nombre;
     if ( !this.usuario.google ) {
@@ -29,6 +32,35 @@ export class ProfileComponent implements OnInit {
     this._usuarioService.actualizarUsuario( this.usuario ).subscribe( resp => {
       console.log( resp );
     });
+  }
+
+  seleccionImage( archivo: File ) {
+    console.log( archivo );
+    if ( !archivo ) {
+      this.imagenSubir = null;
+      return;
+    }
+
+    if ( archivo.type.indexOf('image') < 0 ) {
+      // swal( 'Sòlo imagenes', 'El archivo seleccionado no es una imagen', 'error')
+      console.log('no es un aimagen');
+      this.imagenSubir = null;
+      return;
+    }
+    this.imagenSubir = archivo;
+    let reader = new FileReader();
+    let urlImagenTemp = reader.readAsDataURL( archivo );
+    reader.onloadend = () => {
+      console.log(reader.result);
+      this.imagenTemp = reader.result as string;
+    };
+  }
+
+  cambiarImagen(){
+    console.log('cam biar imagen');
+    console.log( this.imagenSubir );
+    console.log( this.usuario._id );
+    this._usuarioService.cambiarImagen( this.imagenSubir, this.usuario._id);
   }
 
 }
