@@ -57,6 +57,8 @@ export class UsuarioService {
   loginGoogle( token: string ){
     const url = URL_SERVICIOS + '/login/google';
     return this.http.post( url, { token }).pipe(map( (resp: any) => {
+      console.log('login Google line 60: ', resp);
+      console.log( this.usuario );
       this.guardarStorage( resp.id, resp.token, resp.usuario );
       return true;
     }));
