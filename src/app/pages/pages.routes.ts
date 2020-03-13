@@ -7,6 +7,7 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { LoginGuardGuard } from '../services/service.index';
+import { ProfileComponent } from './profile/profile.component';
 
 const pagesRoutes: Routes = [
     {
@@ -14,12 +15,16 @@ const pagesRoutes: Routes = [
         component: PagesComponent,
         canActivate: [ LoginGuardGuard ],
         children: [
-            { path: 'dashboard', component: DashboardComponent, data: { titulo: 'Dashboard', Autor: 'Nombre Autor'} },
-            { path: 'progress', component: ProgressComponent, data: { titulo: 'Progress', Autor: 'Nombre Autor'} },
-            { path: 'graficas1', component: Graficas1Component, data: { titulo: 'Graficas', Autor: 'Nombre Autor'} },
-            { path: 'promesas', component: PromesasComponent, data: { titulo: 'Promesas', Autor: 'Nombre Autor'} },
-            { path: 'rxjs', component: RxjsComponent, data: { titulo: 'Rxjs', Autor: 'Nombre Autor'} },
-            { path: 'account-settings', component: AccountSettingsComponent, data: { titulo: 'Ajustes del Tema', Autor: 'Nombre Autor'} },
+            { path: 'dashboard', component: DashboardComponent, data: { titulo: 'Dashboard', Autor: 'Benjamin Zamudio'} },
+            { path: 'progress', component: ProgressComponent, data: { titulo: 'Progress', Autor: 'Benjamin Zamudio'} },
+            { path: 'graficas1', component: Graficas1Component, data: { titulo: 'Graficas', Autor: 'Benjamin Zamudio'} },
+            { path: 'promesas', component: PromesasComponent, data: { titulo: 'Promesas', Autor: 'Benjamin Zamudio'} },
+            { path: 'rxjs', component: RxjsComponent, data: { titulo: 'Rxjs', Autor: 'Benjamin Zamudio'} },
+            {
+                path: 'account-settings',
+                component: AccountSettingsComponent,
+                data: { titulo: 'Ajustes del Tema', Autor: 'Benjamin Zamudio'} },
+            { path: 'perfil', component: ProfileComponent, data: { titulo: 'Perfil de Usuario', Autor: 'Benjamin Zamudio'} },
             { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
         ]
     }
