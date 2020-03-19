@@ -102,7 +102,7 @@ export class UsuarioService {
         this.guardarStorage( usuarioDB._id, this.token, usuarioDB );
       }
       // this.usuario = resp.usuario;
-      swal.fire('Usuario Actualizado', usuario.nombre, 'success');
+      swal.fire('Usuario Actualizado ', usuario.nombre, 'success');
       return true;
     }));
   }
