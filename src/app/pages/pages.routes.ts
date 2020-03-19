@@ -8,6 +8,7 @@ import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { LoginGuardGuard } from '../services/service.index';
 import { ProfileComponent } from './profile/profile.component';
+import { UsuariosComponent } from './usuarios/usuarios.component';
 
 const pagesRoutes: Routes = [
     {
@@ -25,6 +26,8 @@ const pagesRoutes: Routes = [
                 component: AccountSettingsComponent,
                 data: { titulo: 'Ajustes del Tema', Autor: 'Benjamin Zamudio'} },
             { path: 'perfil', component: ProfileComponent, data: { titulo: 'Perfil de Usuario', Autor: 'Benjamin Zamudio'} },
+            // Manetnimiento
+            { path: 'usuarios', component: UsuariosComponent, data: { titulo: 'Mantenimiento de Usuarios', Autor: 'Benjamin Zamudio'} },
             { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
         ]
     }

@@ -3,7 +3,7 @@ import { Usuario } from 'src/app/models/usuario.model';
 import { HttpClient } from '@angular/common/http';
 import { URL_SERVICIOS } from '../../config/config';
 import { map } from 'rxjs/operators';
-// import * as swal from 'sweetalert';
+import swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { SubirArchivoService } from '../subir-archivo/subir-archivo.service';
 
@@ -85,7 +85,7 @@ export class UsuarioService {
     .pipe(
       map( (resp: any) => {
         console.log( resp );
-        // swal('Usuario creado', usuario.email, 'success');
+        swal.fire('Usuario creado', usuario.email, 'success');
         return resp.usuario;
       })
     );
@@ -97,10 +97,12 @@ export class UsuarioService {
     url += '?token=' + this.token;
     return this.http.put( url, usuario ).pipe(map( (resp: any) => {
       console.log( resp );
+      if ( usuario._id === this.usuario._id ) {
+        let usuarioDB: Usuario = resp.usuario;
+        this.guardarStorage( usuarioDB._id, this.token, usuarioDB );
+      }
       // this.usuario = resp.usuario;
-      let usuarioDB: Usuario = resp.usuario;
-      this.guardarStorage( usuarioDB._id, this.token, usuarioDB );
-      // swal('Usuario Actualizado', usuario.nombre, 'success');
+      swal.fire('Usuario Actualizado', usuario.nombre, 'success');
       return true;
     }));
   }
@@ -111,11 +113,34 @@ export class UsuarioService {
       .then( (resp: any) => {
         console.log( resp );
         this.usuario.img = resp.usuario.img;
-        // swal('Imagen actualizada', this.usuario.nombre, 'success');
+        swal.fire('Imagen actualizada', this.usuario.nombre, 'success');
         this.guardarStorage(id, this.token, this.usuario );
       })
       .catch( resp => {
         console.log( resp );
       });
+  }
+
+  cargarUsuarios( desde: number = 0 ) {
+    let url = URL_SERVICIOS + '/usuario?desde=' + desde;
+    return this.http.get( url );
+  }
+
+  buscarUsuarios( termino: string ) {
+    let url = URL_SERVICIOS + '/busqueda/coleccion/usuarios/' + termino;
+    return this.http.get( url ).pipe(map( (resp: any) => {
+      resp.usuarios;
+      console.log( resp );
+    }));
+  }
+
+  borrarUsuario( id: string) {
+    console.log( id );
+    let url = URL_SERVICIOS + '/usuario/' + id;
+    url += '?token=' +  this.token;
+    return this.http.delete( url ).pipe(map(resp => {
+      swal.fire('Usuario Borrado!', 'el usuario ha sido borrado exitosamente !', 'success');
+      return;
+    }));
   }
 }
