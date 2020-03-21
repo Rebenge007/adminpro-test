@@ -42,7 +42,7 @@ export class SidebarService {
         },
         {
           titulo: 'Hospitales',
-          url: '/hospotales'
+          url: '/hospitales'
         },
         {
           titulo: 'Medicos',

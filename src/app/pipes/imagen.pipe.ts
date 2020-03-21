@@ -10,21 +10,21 @@ export class ImagenPipe implements PipeTransform {
   transform(img: string, tipo: string = 'usuario'): any {
     let url = URL_SERVICIOS + '/img';
     // si no se recibe imagen
-    if ( !img ){
+    if ( !img ) {
       return url + '/usuarios/xxx';
     }
     if ( img.indexOf('https') >= 0 ) {
        return img;
     }
 
-    switch( tipo ) {
+    switch ( tipo ) {
       case 'usuario':
         url += '/usuarios/' + img;
         break;
       case 'medico':
         url += '/medicos/' + img;
         break;
-      case 'hopital':
+      case 'hospital':
         url += '/hospitales/' + img;
         break;
       default:
