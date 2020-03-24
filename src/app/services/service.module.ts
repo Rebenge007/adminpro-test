@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { 
+import {
   SettingsService,
   SidebarService,
   SharedService,
   UsuarioService,
   LoginGuardGuard,
   SubirArchivoService,
-  HospitalService } from './service.index';
+  HospitalService,
+  MedicoService } from './service.index';
 import { HttpClientModule } from '@angular/common/http';
 import { ModalUploadService } from '../components/modal-upload/modal-upload.service';
 
@@ -26,7 +27,8 @@ import { ModalUploadService } from '../components/modal-upload/modal-upload.serv
     LoginGuardGuard,
     SubirArchivoService,
     ModalUploadService,
-    HospitalService
+    HospitalService,
+    MedicoService
   ]
 })
 export class ServiceModule { }

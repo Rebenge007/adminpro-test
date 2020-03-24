@@ -83,8 +83,8 @@ export class HospitalesComponent implements OnInit {
       });
   }
 
-  crearHospital( nombre: string ) {
-    console.log('crear hospital ' + nombre);
+  crearHospital() {
+    console.log('crear hospital ' );
     swal.fire({
       title: 'Crear Hospital nuevo',
       input: 'text',

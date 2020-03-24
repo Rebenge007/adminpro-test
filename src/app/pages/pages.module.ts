@@ -23,6 +23,9 @@ import { CommonModule } from '@angular/common';
 import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { HospitalesComponent } from './hospitales/hospitales.component';
+import { MedicosComponent } from './medicos/medicos.component';
+import { MedicoComponent } from './medicos/medico.component';
+
 
 // Pipe Module
 import { PipesModule } from '../pipes/pipes.module';
@@ -41,7 +44,9 @@ import { PipesModule } from '../pipes/pipes.module';
         ProfileComponent,
         UsuariosComponent,
         ModalUploadComponent,
-        HospitalesComponent
+        HospitalesComponent,
+        MedicosComponent,
+        MedicoComponent
     ],
     exports: [
         DashboardComponent,
