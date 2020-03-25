@@ -35,6 +35,48 @@ export class MedicoService {
     }));
   }
 
+  buscarMedicos( termino: string ) {
+    let url = URL_SERVICIOS + 'busqueda/coleccion/medicos/' + termino;
+    return this.http.get( url ).pipe(map( (resp: any ) => {
+      return resp.medicos;
+    }));
+  }
+
+  borrarMedico(id: string ) {
+    let url = URL_SERVICIOS + '/medico/' + id;
+    url += '?token=' + this._usuarioService.token;
+    return this.http.delete( url ).pipe(map( (resp: any ) => {
+      swal.fire('Médico Borrado', 'Médico borrado correctamente !!!', 'success');
+      return resp;
+    }));
+  }
+
+  guardarMedico( medico: Medico ) {
+    let url = URL_SERVICIOS + '/medico';
+
+    if ( medico._id ) {
+      url += '/' +  medico._id;
+      url += '?token=' + this._usuarioService.token;
+      return this.http.put( url, medico ).pipe(map( (resp: any ) => {
+        swal.fire('Médico Actualizado', 'Médico actualizado correctamente !!!', 'success');
+        return resp.medico;
+      }));
+    } else {
+      url += '?token=' + this._usuarioService.token;
+      return this.http.post( url, medico ).pipe(map( (resp: any ) => {
+        swal.fire('Médico Creado', 'Médico creado correctamente !!!', 'success');
+        return resp.medico;
+      }));
+    }
+  }
+
+  cargarMedico( id: string ) {
+    const url = URL_SERVICIOS + '/medico/' + id;
+    return this.http.get( url ).pipe(map( (resp: any ) => {
+      return resp.medico;
+    }));
+  }
+
   obtenerMedico( id: string ){
     console.log( 'obtener medico', + id );
     const url = URL_SERVICIOS + '/medico/' + id;

@@ -32,8 +32,8 @@ export class HospitalService {
     return this.http.get( url );
   }
 
-  obtenerHospital( id: string ){
-    console.log( 'obtener hospital', + id );
+  obtenerHospital( id: string ) {
+    console.log( 'obtener hospital', id );
     const url = URL_SERVICIOS + '/hospital/' + id;
     return this.http.get( url );
   }

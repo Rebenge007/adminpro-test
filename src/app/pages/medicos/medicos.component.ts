@@ -32,8 +32,18 @@ export class MedicosComponent implements OnInit {
     });
   }
 
-  buscarMedico( termino: string ){
+  buscarMedicos( termino: string ) {
       console.log(termino);
+      if ( termino.length <= 0 ) {
+        this.cargarMedicos();
+        return;
+      }
+      this.cargando = true;
+      this._medicoService.buscarMedicos( termino ).subscribe( (medicos: any) => {
+        console.log( medicos );
+        this.medicos = medicos;
+        this.cargando = false;
+      });
   }
 
   crearMedico() {
@@ -60,10 +70,13 @@ export class MedicosComponent implements OnInit {
     }
 
     guardarMedico( medico ) {
-      // 
+      //
     }
 
-    borrarMedico( medico ) {
-      // 
+    borrarMedico( medico: Medico ) {
+      this._medicoService.borrarMedico( medico._id )
+      .subscribe( () =>{
+        this.cargarMedicos();
+      });
     }
 }
