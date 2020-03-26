@@ -6,18 +6,19 @@ import { Graficas1Component } from './graficas1/graficas1.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
-import { LoginGuardGuard } from '../services/service.index';
+import { LoginGuardGuard, AdminGuard } from '../services/service.index';
 import { ProfileComponent } from './profile/profile.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { HospitalesComponent } from './hospitales/hospitales.component';
 import { MedicosComponent } from './medicos/medicos.component';
 import { MedicoComponent } from './medicos/medico.component';
+import { BusquedaComponent } from './busqueda/busqueda.component';
 
 const pagesRoutes: Routes = [
     {
         path: '',
         component: PagesComponent,
-        canActivate: [ LoginGuardGuard ],
+        canActivate: [ LoginGuardGuard ], // permite la autenticacion del login
         children: [
             { path: 'dashboard', component: DashboardComponent, data: { titulo: 'Dashboard', Autor: 'Benjamin Zamudio'} },
             { path: 'progress', component: ProgressComponent, data: { titulo: 'Progress', Autor: 'Benjamin Zamudio'} },
@@ -29,6 +30,7 @@ const pagesRoutes: Routes = [
                 component: AccountSettingsComponent,
                 data: { titulo: 'Ajustes del Tema', Autor: 'Benjamin Zamudio'} },
             { path: 'perfil', component: ProfileComponent, data: { titulo: 'Perfil de Usuario', Autor: 'Benjamin Zamudio'} },
+            { path: 'busqueda/:termino', component: BusquedaComponent, data: { titulo: 'Buscador', Autor: 'Benjamin Zamudio'} },
             // Manetnimiento
             {
                 path: 'medicos',
@@ -45,7 +47,12 @@ const pagesRoutes: Routes = [
                 component: HospitalesComponent,
                 data: { titulo: 'Mantenimiento de Hospitales', Autor: 'Benjamin Zamudio' }
             },
-            { path: 'usuarios', component: UsuariosComponent, data: { titulo: 'Mantenimiento de Usuarios', Autor: 'Benjamin Zamudio'} },
+            { 
+                path: 'usuarios',
+                component: UsuariosComponent,
+                canActivate: [ AdminGuard ],
+                data: { titulo: 'Mantenimiento de Usuarios', Autor: 'Benjamin Zamudio'} 
+            },
             { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
         ]
     }

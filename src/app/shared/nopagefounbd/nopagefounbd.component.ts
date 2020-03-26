@@ -8,6 +8,7 @@ declare function init_plugins();
   styleUrls: ['./nopagefounbd.component.css']
 })
 export class NopagefounbdComponent implements OnInit {
+  anio: number = new Date().getFullYear();
 
   constructor() { }
 

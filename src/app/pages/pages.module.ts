@@ -29,6 +29,7 @@ import { MedicoComponent } from './medicos/medico.component';
 
 // Pipe Module
 import { PipesModule } from '../pipes/pipes.module';
+import { BusquedaComponent } from './busqueda/busqueda.component';
 
 @NgModule({
     declarations: [
@@ -46,7 +47,8 @@ import { PipesModule } from '../pipes/pipes.module';
         ModalUploadComponent,
         HospitalesComponent,
         MedicosComponent,
-        MedicoComponent
+        MedicoComponent,
+        BusquedaComponent
     ],
     exports: [
         DashboardComponent,
