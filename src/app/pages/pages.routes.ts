@@ -13,14 +13,20 @@ import { HospitalesComponent } from './hospitales/hospitales.component';
 import { MedicosComponent } from './medicos/medicos.component';
 import { MedicoComponent } from './medicos/medico.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
+import { VerificaTokenGuard } from '../services/guards/verifica-token.guard';
 
 const pagesRoutes: Routes = [
-    {
-        path: '',
-        component: PagesComponent,
-        canActivate: [ LoginGuardGuard ], // permite la autenticacion del login
-        children: [
-            { path: 'dashboard', component: DashboardComponent, data: { titulo: 'Dashboard', Autor: 'Benjamin Zamudio'} },
+    // {
+        // path: '',
+        // component: PagesComponent,
+        // canActivate: [ LoginGuardGuard ], // permite la autenticacion del login
+        // children: [
+            {
+                path: 'dashboard', 
+                canActivate: [VerificaTokenGuard],
+                component: DashboardComponent, 
+                data: { titulo: 'Dashboard', Autor: 'Benjamin Zamudio'}
+            },
             { path: 'progress', component: ProgressComponent, data: { titulo: 'Progress', Autor: 'Benjamin Zamudio'} },
             { path: 'graficas1', component: Graficas1Component, data: { titulo: 'Graficas', Autor: 'Benjamin Zamudio'} },
             { path: 'promesas', component: PromesasComponent, data: { titulo: 'Promesas', Autor: 'Benjamin Zamudio'} },
@@ -47,15 +53,15 @@ const pagesRoutes: Routes = [
                 component: HospitalesComponent,
                 data: { titulo: 'Mantenimiento de Hospitales', Autor: 'Benjamin Zamudio' }
             },
-            { 
+            {
                 path: 'usuarios',
                 component: UsuariosComponent,
                 canActivate: [ AdminGuard ],
                 data: { titulo: 'Mantenimiento de Usuarios', Autor: 'Benjamin Zamudio'} 
             },
             { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
-        ]
-    }
+        // ]
+    // }
 ];
 
 export const PAGES_ROUTES = RouterModule.forChild( pagesRoutes );
